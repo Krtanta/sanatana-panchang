@@ -13,6 +13,8 @@
       --t1:      #F5E6C8;
       --t2:      #BFA882;
       --t3:      #7A6448;
+      --warn:    #E8A020;
+      --green:   #4CAF50;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -29,6 +31,12 @@
       justify-content: center;
       gap: 0;
       padding: 14px 0 0;
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 10;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #2E1E0E;
     }
     .lang-btn {
       background: transparent;
@@ -55,26 +63,75 @@
       text-align: center;
       padding: 32px 0 24px;
       border-bottom: 1px solid #4A3525;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
     }
     header .om { font-size: 36px; display: block; margin-bottom: 10px; }
     header h1 { font-size: 22px; font-weight: 800; color: var(--saffron); margin-bottom: 4px; }
     header .sub { font-size: 13px; color: var(--t3); }
-    .effective { font-size: 12px; color: var(--t3); text-align: center; margin-bottom: 24px; }
+    .version-badge {
+      display: inline-block;
+      background: rgba(255,153,51,0.12);
+      border: 1px solid rgba(255,153,51,0.25);
+      border-radius: 20px;
+      padding: 3px 12px;
+      font-size: 11px;
+      color: var(--saffron);
+      margin-top: 8px;
+    }
+    .effective { font-size: 12px; color: var(--t3); text-align: center; margin: 12px 0 24px; }
     h2 {
       font-size: 15px; font-weight: 700; color: var(--gold);
       margin: 28px 0 10px; padding-left: 10px;
       border-left: 3px solid var(--saffron);
     }
     p, li { font-size: 14px; color: var(--t2); margin-bottom: 8px; }
-    ul { padding-left: 20px; }
-    li { margin-bottom: 4px; }
-    .highlight {
+    ul { padding-left: 20px; margin-bottom: 8px; }
+    li { margin-bottom: 5px; }
+
+    /* ── Card styles ── */
+    .card {
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 14px 0;
+    }
+    .card-green {
+      background: rgba(76,175,80,0.09);
+      border: 1px solid rgba(76,175,80,0.22);
+    }
+    .card-green p { color: var(--t1); font-weight: 600; }
+    .card-saffron {
       background: rgba(255,153,51,0.08);
       border: 1px solid rgba(255,153,51,0.18);
-      border-radius: 8px; padding: 14px 16px; margin: 16px 0;
     }
-    .highlight p { color: var(--t1); font-weight: 600; margin: 0; }
+    .card-saffron p { color: var(--t1); }
+    .card-warn {
+      background: rgba(232,160,32,0.09);
+      border: 1px solid rgba(232,160,32,0.22);
+    }
+    .card-warn p { color: var(--warn); }
+    .card-gold {
+      background: rgba(212,175,55,0.08);
+      border: 1px solid rgba(212,175,55,0.20);
+    }
+
+    /* ── Table of contents ── */
+    .toc {
+      background: var(--surf);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 20px 0;
+    }
+    .toc-title { font-size: 12px; font-weight: 700; color: var(--t3);
+      letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 8px; }
+    .toc a {
+      display: block;
+      color: var(--saffron);
+      font-size: 13px;
+      padding: 3px 0;
+      text-decoration: none;
+    }
+    .toc a:hover { text-decoration: underline; }
+
     footer {
       text-align: center; padding-top: 40px; font-size: 12px;
       color: var(--t3); border-top: 1px solid #4A3525; margin-top: 40px;
@@ -83,6 +140,7 @@
     a:hover { text-decoration: underline; }
     .content { display: none; }
     .content.active { display: block; }
+    strong { color: var(--t1); }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
@@ -96,156 +154,356 @@
 
 <div class="container">
 
-  <!-- ══════════════ ENGLISH ══════════════ -->
-  <div id="content-en" class="content active">
-    <header>
-      <span class="om">🕉</span>
-      <h1>Privacy Policy</h1>
-      <div class="sub">Sanatana Panchang — Precision Hindu Calendar</div>
-    </header>
+<!-- ══════════════════════════════ ENGLISH ══════════════════════════════ -->
+<div id="content-en" class="content active">
+  <header>
+    <span class="om">🕉</span>
+    <h1>Privacy Policy</h1>
+    <div class="sub">Sanatana Panchang — Precision Hindu Calendar</div>
+    <span class="version-badge">App v1.0.21 · May 2026</span>
+  </header>
 
-    <p class="effective">Effective date: April 2026 · Last updated: April 2026</p>
+  <p class="effective">Effective: May 2026 &nbsp;·&nbsp; Last updated: May 2026</p>
 
-    <div class="highlight">
-      <p>🔒 Sanatana Panchang does not collect, sell, or share your personal data.
-      No accounts required. No tracking. No advertising.</p>
-    </div>
-
-    <h2>1. Information We Collect</h2>
-    <p>Sanatana Panchang does not collect, store on our servers, or transmit any personal
-    information to us or any third party.</p>
-    <p>The only data the app accesses is:</p>
-    <ul>
-      <li><strong>Location (GPS / network)</strong> — used solely to compute accurate
-      sunrise/sunset, Panchanga, and Muhurta times for your position. Your location is
-      never transmitted to any server and never shared with any third party.</li>
-      <li><strong>Date and time</strong> — read from your device clock to determine today's
-      Panchanga. Not transmitted anywhere.</li>
-    </ul>
-
-    <h2>2. Location Data</h2>
-    <p>Location permission is requested only to improve calculation accuracy.
-    You may also enter your city manually in Settings — in which case GPS is never accessed.</p>
-    <ul>
-      <li>Location is never uploaded to any server.</li>
-      <li>Location is never shared with any third party.</li>
-      <li>Location is never used for advertising or profiling.</li>
-      <li>You can revoke location permission at any time in device settings without
-      affecting app functionality.</li>
-    </ul>
-
-    <h2>3. Internet Access</h2>
-    <p>Sanatana Panchang does not transmit any data over the internet. The app
-    does not communicate with any remote server operated by us or any third party.</p>
-
-    <h2>4. Third-Party Services</h2>
-    <p>This version of the app includes no third-party SDKs, analytics tools,
-    advertising networks, crash reporters, or social media integrations.</p>
-    <p>If advertising or analytics are introduced in a future version, this policy
-    will be updated and users will be notified via the app update notes prior to the change.</p>
-
-    <h2>5. Children's Privacy</h2>
-    <p>This app is not directed at children under 13. It contains no content inappropriate
-    for any age group and does not knowingly collect any data from any user of any age.</p>
-
-    <h2>6. Your Rights</h2>
-    <p>Since we do not collect or store any personal data on our servers, there is nothing
-    to access, correct, export, or delete. If you have any privacy-related concerns,
-    please contact us at the address below.</p>
-
-    <h2>7. Changes to This Policy</h2>
-    <p>If this policy changes materially, the updated version will be published at this URL.
-    The app update notes will explicitly mention any such change.</p>
-
-    <h2>8. Contact</h2>
-    <p>For any privacy-related questions:</p>
-    <ul>
-      <li>Email: <a href="mailto:krtanta@proton.me">krtanta@proton.me</a></li>
-    </ul>
-    <p>We will respond within 30 days.</p>
-
-    <footer>
-      <p>Sanatana Panchang · Pure Vedic Wisdom · शुद्ध वैदिक ज्ञान</p>
-      <p style="margin-top:6px">© 2026 Sanatana Panchang. All rights reserved.</p>
-    </footer>
+  <div class="card card-green">
+    <p>🔒 Sanatana Panchang does not collect, sell, or share your personal data.
+    No accounts required. No tracking. All panchanga calculations run entirely
+    on your device — no server, no cloud.</p>
   </div>
 
-  <!-- ══════════════ HINDI ══════════════ -->
-  <div id="content-hi" class="content" lang="hi">
-    <header>
-      <span class="om">🕉</span>
-      <h1>गोपनीयता नीति</h1>
-      <div class="sub">सनातन पंचांग — शुद्ध हिन्दू कैलेंडर</div>
-    </header>
-
-    <p class="effective">प्रभावी तिथि: अप्रैल २०२६ · अंतिम अद्यतन: अप्रैल २०२६</p>
-
-    <div class="highlight">
-      <p>🔒 सनातन पंचांग आपका कोई भी व्यक्तिगत डेटा एकत्र, बेचता या साझा नहीं करता।
-      कोई खाता आवश्यक नहीं। कोई ट्रैकिंग नहीं। कोई विज्ञापन नहीं।</p>
-    </div>
-
-    <h2>१. हम क्या जानकारी एकत्र करते हैं</h2>
-    <p>सनातन पंचांग हमारे सर्वर पर कोई भी व्यक्तिगत जानकारी एकत्र, संग्रहीत या
-    किसी तीसरे पक्ष को प्रसारित नहीं करता।</p>
-    <p>ऐप केवल इन्हें एक्सेस करता है:</p>
-    <ul>
-      <li><strong>स्थान (GPS / नेटवर्क)</strong> — केवल आपके स्थान के लिए सटीक
-      सूर्योदय/अस्त, पंचांग और मुहूर्त की गणना हेतु। आपका स्थान कभी किसी सर्वर पर
-      नहीं भेजा जाता और किसी तीसरे पक्ष के साथ साझा नहीं किया जाता।</li>
-      <li><strong>दिनांक और समय</strong> — आज का पंचांग जानने के लिए आपके डिवाइस से
-      पढ़ा जाता है। कहीं भी प्रसारित नहीं किया जाता।</li>
-    </ul>
-
-    <h2>२. स्थान डेटा</h2>
-    <p>स्थान की अनुमति केवल गणना की सटीकता बढ़ाने के लिए माँगी जाती है।
-    आप सेटिंग्स में अपना शहर मैन्युअल रूप से भी दर्ज कर सकते हैं।</p>
-    <ul>
-      <li>स्थान कभी किसी सर्वर पर अपलोड नहीं होता।</li>
-      <li>स्थान किसी तीसरे पक्ष के साथ साझा नहीं किया जाता।</li>
-      <li>स्थान का उपयोग कभी विज्ञापन या प्रोफाइलिंग के लिए नहीं होता।</li>
-      <li>आप डिवाइस सेटिंग्स में किसी भी समय स्थान अनुमति रद्द कर सकते हैं।</li>
-    </ul>
-
-    <h2>३. इंटरनेट एक्सेस</h2>
-    <p>सनातन पंचांग इंटरनेट पर कोई भी डेटा प्रसारित नहीं करता। ऐप हमारे या किसी
-    तीसरे पक्ष के किसी भी दूरस्थ सर्वर से संवाद नहीं करता।</p>
-
-    <h2>४. तृतीय-पक्ष सेवाएँ</h2>
-    <p>इस संस्करण में कोई भी तृतीय-पक्ष SDK, विश्लेषण उपकरण, विज्ञापन नेटवर्क,
-    क्रैश रिपोर्टर या सोशल मीडिया एकीकरण शामिल नहीं है।</p>
-    <p>यदि भविष्य के संस्करण में विज्ञापन या विश्लेषण जोड़ा जाता है, तो यह नीति
-    अद्यतन की जाएगी और परिवर्तन से पहले उपयोगकर्ताओं को सूचित किया जाएगा।</p>
-
-    <h2>५. बच्चों की गोपनीयता</h2>
-    <p>यह ऐप १३ वर्ष से कम आयु के बच्चों के लिए नहीं है। इसमें किसी भी आयु के लिए
-    अनुपयुक्त कोई सामग्री नहीं है और हम किसी भी उपयोगकर्ता से जानबूझकर कोई डेटा
-    एकत्र नहीं करते।</p>
-
-    <h2>६. आपके अधिकार</h2>
-    <p>चूँकि हम अपने सर्वर पर कोई व्यक्तिगत डेटा एकत्र या संग्रहीत नहीं करते, इसलिए
-    एक्सेस, सुधार, निर्यात या हटाने के लिए कुछ भी नहीं है। किसी भी गोपनीयता-संबंधी
-    चिंता के लिए नीचे दिए गए पते पर संपर्क करें।</p>
-
-    <h2>७. नीति में परिवर्तन</h2>
-    <p>यदि इस नीति में महत्वपूर्ण परिवर्तन होता है, तो अद्यतन संस्करण इस URL पर
-    प्रकाशित किया जाएगा। ऐप के अपडेट नोट्स में ऐसे किसी भी परिवर्तन का स्पष्ट
-    उल्लेख किया जाएगा।</p>
-
-    <h2>८. संपर्क</h2>
-    <p>किसी भी गोपनीयता-संबंधी प्रश्न के लिए:</p>
-    <ul>
-      <li>ईमेल: <a href="mailto:krtanta@proton.me">krtanta@proton.me</a></li>
-    </ul>
-    <p>हम ३० दिनों के भीतर उत्तर देंगे।</p>
-
-    <footer>
-      <p>सनातन पंचांग · शुद्ध वैदिक ज्ञान · Pure Vedic Wisdom</p>
-      <p style="margin-top:6px">© २०२६ सनातन पंचांग। सर्वाधिकार सुरक्षित।</p>
-    </footer>
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <a href="#en-collect">1. Information We Collect</a>
+    <a href="#en-location">2. Location Data</a>
+    <a href="#en-local">3. Local Storage</a>
+    <a href="#en-internet">4. Internet Access</a>
+    <a href="#en-ads">5. Advertising (Google AdMob)</a>
+    <a href="#en-subscription">6. Subscription (Future Feature)</a>
+    <a href="#en-children">7. Children's Privacy</a>
+    <a href="#en-rights">8. Your Rights</a>
+    <a href="#en-changes">9. Changes to This Policy</a>
+    <a href="#en-contact">10. Contact</a>
   </div>
 
+  <h2 id="en-collect">1. Information We Collect</h2>
+  <p>Sanatana Panchang is a <strong>fully offline app</strong>. We do not operate any
+  server that receives your data. The developer does not collect, store, or have
+  access to any information about you.</p>
+  <p>The app accesses only the following data locally on your device:</p>
+  <ul>
+    <li><strong>GPS / Network location</strong> — used solely to compute accurate sunrise,
+    sunset, Panchanga, and Muhurta for your position. Never transmitted.</li>
+    <li><strong>Device clock</strong> — read to determine today's date for Panchanga
+    calculation. Never transmitted.</li>
+  </ul>
+
+  <h2 id="en-location">2. Location Data</h2>
+  <p>Location is requested only to improve astronomical calculation accuracy.
+  You may enter your city manually in Settings instead — GPS is then never accessed.</p>
+  <ul>
+    <li>Location is never uploaded to any server.</li>
+    <li>Location is never shared with any third party by the developer.</li>
+    <li>Location is stored only in the app's local SharedPreferences on your device.</li>
+    <li>You can revoke location permission at any time in Android Settings → App permissions.</li>
+  </ul>
+  <div class="card card-warn">
+    <p>⚠ Note: If you grant location permission, Google AdMob (see Section 5)
+    may use your <em>approximate</em> location for ad targeting under Google's
+    own privacy policy. This is separate from the app's own location use.</p>
+  </div>
+
+  <h2 id="en-local">3. Local Storage</h2>
+  <p>The app stores the following <strong>only on your device</strong>, using Android
+  SharedPreferences. This data never leaves your device:</p>
+  <ul>
+    <li>Selected language (English / Hindi)</li>
+    <li>Selected theme (Light / Dark / System)</li>
+    <li>Calendar system preference (Amanta / Purnimanta, Ayanamsa)</li>
+    <li>Last-known location (city name, latitude, longitude)</li>
+    <li>Daily notification time and enabled/disabled state</li>
+    <li>Onboarding completion flag</li>
+  </ul>
+
+  <h2 id="en-internet">4. Internet Access</h2>
+  <p>The app declares the INTERNET permission in order to:</p>
+  <ul>
+    <li>Load and display Google AdMob advertisements (see Section 5).</li>
+    <li>Support future optional features (e.g. festival calendar updates).</li>
+  </ul>
+  <p>The developer does <strong>not</strong> operate any server that the app calls.
+  All panchanga calculations are performed locally. The only outbound network traffic
+  is AdMob's ad-serving requests.</p>
+
+  <h2 id="en-ads">5. Advertising (Google AdMob)</h2>
+  <div class="card card-saffron">
+    <p>📢 Sanatana Panchang displays banner advertisements powered by Google AdMob
+    to keep the app free. Ad revenue offsets development and maintenance costs.</p>
+  </div>
+  <p><strong>What AdMob collects:</strong></p>
+  <ul>
+    <li>Device advertising ID (Android Advertising ID / GAID)</li>
+    <li>Approximate location (if location permission was granted)</li>
+    <li>IP address</li>
+    <li>App interaction signals (which screen an ad was shown on)</li>
+    <li>Device model, OS version, language</li>
+  </ul>
+  <p><strong>What AdMob does NOT receive from us:</strong></p>
+  <ul>
+    <li>Your GPS coordinates — only city-level approximation may be inferred from IP</li>
+    <li>Any panchanga data, birth chart information, or religious preferences</li>
+    <li>Your name, email, phone, or any account information</li>
+  </ul>
+  <p><strong>Ad data is governed by Google's Privacy Policy:</strong>
+  <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></p>
+  <p><strong>To opt out of personalised ads:</strong> Go to your device
+  <em>Settings → Google → Ads → Delete advertising ID</em> (Android 12+) or
+  <em>Settings → Google → Ads → Opt out of Ads Personalisation</em>.</p>
+  <p>Ad placement locations in this version:</p>
+  <ul>
+    <li>Today screen — banner at the bottom of the daily panchanga feed</li>
+    <li>Calendar screen — banner above the day summary panel</li>
+    <li>Festivals screen — banner at the bottom of the festival list</li>
+    <li>More screen — banner at the bottom</li>
+  </ul>
+  <p>No ads are shown inside Muhurta, Kundali, Super Clock, or any legal/settings screen.</p>
+
+  <h2 id="en-subscription">6. Subscription (Planned Future Feature)</h2>
+  <div class="card card-gold">
+    <p>💎 A premium subscription tier is planned for a future update. This section
+    describes how it will work so you are informed in advance.</p>
+  </div>
+  <p>When launched, a subscription will:</p>
+  <ul>
+    <li><strong>Remove all advertisements</strong> from the app.</li>
+    <li>Unlock advanced features (to be announced).</li>
+    <li>Be processed entirely through <strong>Google Play Billing</strong>.
+    The developer never sees or handles your payment information.</li>
+    <li>Never require you to create an account or share any personal information
+    beyond what Google Play already has.</li>
+    <li>Be cancellable at any time from Google Play → Subscriptions.</li>
+  </ul>
+  <p>Data handling for subscriptions: Google Play returns only a purchase token and
+  subscription status to the app to verify entitlement. No personal billing data is
+  ever received by or stored by the developer.</p>
+  <p>This policy will be updated before any subscription feature is launched,
+  and app update notes will explicitly describe the change.</p>
+
+  <h2 id="en-children">7. Children's Privacy</h2>
+  <p>This app is not directed at children under 13. The developer does not knowingly
+  collect personal data from any user. However, because the app uses Google AdMob,
+  parents should be aware that AdMob may serve ads to users of all ages.
+  If you are a parent concerned about ad exposure, you can use Android's parental
+  controls to restrict ad tracking.</p>
+
+  <h2 id="en-rights">8. Your Rights</h2>
+  <p>Because the developer does not collect or store any personal data:</p>
+  <ul>
+    <li>There is no data to access, correct, export, or delete from our side.</li>
+    <li>For AdMob data, exercise your rights via Google's data controls at
+    <a href="https://myaccount.google.com" target="_blank">myaccount.google.com</a>.</li>
+    <li>You can delete all app data at any time via Android Settings → Apps →
+    Sanatana Panchang → Clear data.</li>
+  </ul>
+
+  <h2 id="en-changes">9. Changes to This Policy</h2>
+  <p>If this policy changes materially — particularly if advertising behaviour changes
+  or subscription features are introduced — we will:</p>
+  <ul>
+    <li>Update the "Last updated" date at the top of this page.</li>
+    <li>Publish the updated policy at this URL before the app update goes live.</li>
+    <li>Note the change explicitly in the Play Store update description.</li>
+    <li>Show an in-app notice on first launch after the update.</li>
+  </ul>
+
+  <h2 id="en-contact">10. Contact</h2>
+  <p>For any privacy-related questions or requests:</p>
+  <ul>
+    <li>Email: <a href="mailto:krtanta@proton.me">krtanta@proton.me</a></li>
+  </ul>
+  <p>We will respond within 30 days. For AdMob-related requests, please also
+  refer to Google's support at
+  <a href="https://support.google.com/ads" target="_blank">support.google.com/ads</a>.</p>
+
+  <footer>
+    <p>Sanatana Panchang · Pure Vedic Wisdom · शुद्ध वैदिक ज्ञान</p>
+    <p style="margin-top:6px">© 2026 Sanatana Panchang. All rights reserved.</p>
+    <p style="margin-top:4px; font-size:11px">
+      This policy is available in English and Hindi.
+      In case of conflict, the English version prevails.
+    </p>
+  </footer>
 </div>
+
+<!-- ══════════════════════════════ HINDI ══════════════════════════════ -->
+<div id="content-hi" class="content" lang="hi" style="font-family:'Noto Sans Devanagari',sans-serif">
+  <header>
+    <span class="om">🕉</span>
+    <h1>गोपनीयता नीति</h1>
+    <div class="sub">सनातन पंचांग — शुद्ध हिन्दू कैलेंडर</div>
+    <span class="version-badge">ऐप v1.0.21 · मई 2026</span>
+  </header>
+
+  <p class="effective">प्रभावी: मई 2026 &nbsp;·&nbsp; अंतिम अद्यतन: मई 2026</p>
+
+  <div class="card card-green">
+    <p>🔒 सनातन पंचांग आपका कोई भी व्यक्तिगत डेटा एकत्र, बेचता या साझा नहीं करता।
+    कोई खाता आवश्यक नहीं। कोई ट्रैकिंग नहीं। सभी पंचांग गणनाएं आपके डिवाइस पर
+    होती हैं — कोई सर्वर नहीं, कोई क्लाउड नहीं।</p>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">विषय-सूची</div>
+    <a href="#hi-collect">१. हम क्या जानकारी एकत्र करते हैं</a>
+    <a href="#hi-location">२. स्थान डेटा</a>
+    <a href="#hi-local">३. स्थानीय भंडारण</a>
+    <a href="#hi-internet">४. इंटरनेट एक्सेस</a>
+    <a href="#hi-ads">५. विज्ञापन (Google AdMob)</a>
+    <a href="#hi-subscription">६. सदस्यता (भविष्य की सुविधा)</a>
+    <a href="#hi-children">७. बच्चों की गोपनीयता</a>
+    <a href="#hi-rights">८. आपके अधिकार</a>
+    <a href="#hi-changes">९. नीति में परिवर्तन</a>
+    <a href="#hi-contact">१०. संपर्क</a>
+  </div>
+
+  <h2 id="hi-collect">१. हम क्या जानकारी एकत्र करते हैं</h2>
+  <p>सनातन पंचांग एक <strong>पूर्णतः ऑफलाइन ऐप</strong> है। हम कोई सर्वर नहीं चलाते
+  जो आपका डेटा प्राप्त करे। डेवलपर को आपके बारे में किसी भी जानकारी तक पहुंच नहीं है।</p>
+  <p>ऐप केवल निम्नलिखित डेटा को स्थानीय रूप से आपके डिवाइस पर एक्सेस करता है:</p>
+  <ul>
+    <li><strong>GPS / नेटवर्क स्थान</strong> — केवल आपके स्थान के लिए सटीक सूर्योदय,
+    सूर्यास्त, पंचांग और मुहूर्त की गणना हेतु। कभी प्रसारित नहीं होता।</li>
+    <li><strong>डिवाइस घड़ी</strong> — आज की पंचांग गणना के लिए पढ़ी जाती है।
+    कहीं प्रसारित नहीं होती।</li>
+  </ul>
+
+  <h2 id="hi-location">२. स्थान डेटा</h2>
+  <p>स्थान अनुमति केवल खगोलीय गणना की सटीकता सुधारने के लिए माँगी जाती है।
+  आप सेटिंग्स में अपना शहर मैन्युअल रूप से भी दर्ज कर सकते हैं।</p>
+  <ul>
+    <li>स्थान कभी किसी सर्वर पर अपलोड नहीं होता।</li>
+    <li>स्थान डेवलपर द्वारा किसी तीसरे पक्ष के साथ साझा नहीं किया जाता।</li>
+    <li>स्थान केवल आपके डिवाइस पर SharedPreferences में संग्रहीत होता है।</li>
+    <li>आप Android सेटिंग्स → ऐप अनुमतियाँ में किसी भी समय स्थान अनुमति रद्द कर सकते हैं।</li>
+  </ul>
+  <div class="card card-warn">
+    <p>⚠ नोट: यदि आपने स्थान अनुमति दी है, तो Google AdMob (धारा ५ देखें)
+    विज्ञापन लक्ष्यीकरण के लिए आपके <em>अनुमानित</em> स्थान का उपयोग अपनी गोपनीयता
+    नीति के अंतर्गत कर सकता है।</p>
+  </div>
+
+  <h2 id="hi-local">३. स्थानीय भंडारण</h2>
+  <p>ऐप निम्नलिखित <strong>केवल आपके डिवाइस पर</strong> Android SharedPreferences में
+  संग्रहीत करता है। यह डेटा आपके डिवाइस को कभी नहीं छोड़ता:</p>
+  <ul>
+    <li>चुनी हुई भाषा (अंग्रेजी / हिन्दी)</li>
+    <li>चुनी हुई थीम (लाइट / डार्क / सिस्टम)</li>
+    <li>कैलेंडर प्रणाली (अमान्त / पूर्णिमान्त, अयनांश)</li>
+    <li>अंतिम ज्ञात स्थान (शहर का नाम, अक्षांश, देशांतर)</li>
+    <li>दैनिक सूचना समय और सक्षम/अक्षम स्थिति</li>
+    <li>ऑनबोर्डिंग पूर्णता फ्लैग</li>
+  </ul>
+
+  <h2 id="hi-internet">४. इंटरनेट एक्सेस</h2>
+  <p>ऐप निम्नलिखित के लिए INTERNET अनुमति घोषित करता है:</p>
+  <ul>
+    <li>Google AdMob विज्ञापन लोड और प्रदर्शित करना (धारा ५ देखें)।</li>
+    <li>भविष्य की वैकल्पिक सुविधाओं (जैसे त्योहार कैलेंडर अपडेट) का समर्थन।</li>
+  </ul>
+  <p>डेवलपर कोई सर्वर नहीं चलाता जिसे ऐप कॉल करे। सभी पंचांग गणनाएं स्थानीय रूप से
+  होती हैं। केवल AdMob के विज्ञापन-सेवा अनुरोध नेटवर्क ट्रैफ़िक उत्पन्न करते हैं।</p>
+
+  <h2 id="hi-ads">५. विज्ञापन (Google AdMob)</h2>
+  <div class="card card-saffron">
+    <p>📢 सनातन पंचांग ऐप को मुफ्त रखने के लिए Google AdMob के माध्यम से बैनर
+    विज्ञापन प्रदर्शित करता है। विज्ञापन राजस्व विकास और रखरखाव लागत को वहन करता है।</p>
+  </div>
+  <p><strong>AdMob क्या एकत्र करता है:</strong></p>
+  <ul>
+    <li>डिवाइस विज्ञापन ID (Android Advertising ID / GAID)</li>
+    <li>अनुमानित स्थान (यदि स्थान अनुमति दी गई है)</li>
+    <li>IP पता</li>
+    <li>ऐप इंटरैक्शन संकेत</li>
+    <li>डिवाइस मॉडल, OS संस्करण, भाषा</li>
+  </ul>
+  <p><strong>AdMob को हमसे क्या नहीं मिलता:</strong></p>
+  <ul>
+    <li>आपके GPS निर्देशांक — केवल IP से शहर-स्तरीय अनुमान संभव है</li>
+    <li>कोई भी पंचांग डेटा, जन्म कुंडली जानकारी, या धार्मिक प्राथमिकताएं</li>
+    <li>आपका नाम, ईमेल, फोन, या कोई भी खाता जानकारी</li>
+  </ul>
+  <p><strong>विज्ञापन डेटा Google की गोपनीयता नीति द्वारा शासित है:</strong>
+  <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></p>
+  <p><strong>वैयक्तिकृत विज्ञापन से बाहर निकलने के लिए:</strong> डिवाइस
+  सेटिंग्स → Google → विज्ञापन → विज्ञापन ID हटाएं (Android 12+)।</p>
+  <p>इस संस्करण में विज्ञापन स्थान:</p>
+  <ul>
+    <li>आज स्क्रीन — दैनिक पंचांग फ़ीड के नीचे बैनर</li>
+    <li>कैलेंडर स्क्रीन — दिन सारांश पैनल के ऊपर बैनर</li>
+    <li>त्योहार स्क्रीन — त्योहार सूची के नीचे बैनर</li>
+    <li>अधिक स्क्रीन — नीचे बैनर</li>
+  </ul>
+  <p>मुहूर्त, कुंडली, सुपर घड़ी, या किसी कानूनी/सेटिंग्स स्क्रीन में कोई विज्ञापन नहीं दिखाया जाता।</p>
+
+  <h2 id="hi-subscription">६. सदस्यता (भविष्य की सुविधा)</h2>
+  <div class="card card-gold">
+    <p>💎 भविष्य के अपडेट में एक प्रीमियम सदस्यता स्तर की योजना है। यह धारा बताती है
+    कि यह कैसे काम करेगी ताकि आप पहले से सूचित रहें।</p>
+  </div>
+  <p>लॉन्च होने पर, एक सदस्यता:</p>
+  <ul>
+    <li><strong>ऐप से सभी विज्ञापन हटाएगी।</strong></li>
+    <li>उन्नत सुविधाएं अनलॉक करेगी (बाद में घोषित की जाएंगी)।</li>
+    <li>पूरी तरह <strong>Google Play Billing</strong> के माध्यम से संसाधित होगी।
+    डेवलपर आपकी भुगतान जानकारी कभी नहीं देखता या संभालता।</li>
+    <li>आपको कभी भी कोई खाता बनाने या व्यक्तिगत जानकारी साझा करने की आवश्यकता नहीं होगी।</li>
+    <li>Google Play → सदस्यता से किसी भी समय रद्द की जा सकती है।</li>
+  </ul>
+  <p>इस नीति को किसी भी सदस्यता सुविधा लॉन्च करने से पहले अपडेट किया जाएगा।</p>
+
+  <h2 id="hi-children">७. बच्चों की गोपनीयता</h2>
+  <p>यह ऐप 13 वर्ष से कम आयु के बच्चों के लिए नहीं है। डेवलपर किसी भी उपयोगकर्ता से
+  व्यक्तिगत डेटा एकत्र नहीं करता। हालांकि, चूंकि ऐप Google AdMob का उपयोग करता है,
+  माता-पिता Android के माता-पिता नियंत्रण का उपयोग करके विज्ञापन ट्रैकिंग को सीमित कर सकते हैं।</p>
+
+  <h2 id="hi-rights">८. आपके अधिकार</h2>
+  <p>चूंकि डेवलपर कोई व्यक्तिगत डेटा एकत्र या संग्रहीत नहीं करता:</p>
+  <ul>
+    <li>हमारी तरफ से एक्सेस, सुधार, निर्यात या हटाने के लिए कोई डेटा नहीं है।</li>
+    <li>AdMob डेटा के लिए, Google के डेटा नियंत्रण का उपयोग करें:
+    <a href="https://myaccount.google.com" target="_blank">myaccount.google.com</a></li>
+    <li>Android सेटिंग्स → ऐप्स → सनातन पंचांग → डेटा साफ़ करें से सभी ऐप डेटा हटाएं।</li>
+  </ul>
+
+  <h2 id="hi-changes">९. नीति में परिवर्तन</h2>
+  <p>यदि इस नीति में महत्वपूर्ण परिवर्तन होता है — विशेष रूप से यदि विज्ञापन व्यवहार
+  बदलता है या सदस्यता सुविधाएं पेश की जाती हैं — तो हम:</p>
+  <ul>
+    <li>इस पृष्ठ के शीर्ष पर "अंतिम अद्यतन" तिथि अपडेट करेंगे।</li>
+    <li>ऐप अपडेट लाइव होने से पहले अद्यतन नीति इस URL पर प्रकाशित करेंगे।</li>
+    <li>Play Store अपडेट विवरण में परिवर्तन का स्पष्ट उल्लेख करेंगे।</li>
+    <li>अपडेट के बाद पहले लॉन्च पर ऐप-इन नोटिस दिखाएंगे।</li>
+  </ul>
+
+  <h2 id="hi-contact">१०. संपर्क</h2>
+  <p>किसी भी गोपनीयता-संबंधी प्रश्न के लिए:</p>
+  <ul>
+    <li>ईमेल: <a href="mailto:krtanta@proton.me">krtanta@proton.me</a></li>
+  </ul>
+  <p>हम 30 दिनों के भीतर उत्तर देंगे। AdMob-संबंधित अनुरोधों के लिए कृपया
+  <a href="https://support.google.com/ads" target="_blank">support.google.com/ads</a>
+  पर Google के सहायता का भी संदर्भ लें।</p>
+
+  <footer>
+    <p>सनातन पंचांग · शुद्ध वैदिक ज्ञान · Pure Vedic Wisdom</p>
+    <p style="margin-top:6px">© 2026 सनातन पंचांग। सर्वाधिकार सुरक्षित।</p>
+    <p style="margin-top:4px; font-size:11px">
+      यह नीति अंग्रेजी और हिंदी में उपलब्ध है।
+      विरोध की स्थिति में, अंग्रेजी संस्करण मान्य होगा।
+    </p>
+  </footer>
+</div>
+
+</div><!-- .container -->
 
 <script>
   function setLang(lang, btn) {
@@ -256,11 +514,20 @@
     document.documentElement.lang = lang;
     localStorage.setItem('pp-lang', lang);
   }
+  // Auto-restore language preference
   const saved = localStorage.getItem('pp-lang');
   if (saved === 'hi') {
     const hiBtn = document.querySelectorAll('.lang-btn')[1];
     setLang('hi', hiBtn);
   }
+  // Smooth scroll for TOC links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const el = document.querySelector(a.getAttribute('href'));
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 </script>
 </body>
 </html>
